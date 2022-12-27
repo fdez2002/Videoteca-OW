@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.request.RequestListener
 import com.fdez.videoteca.R
 import com.fdez.videoteca.databinding.ItemMovieBinding
 import com.fdez.videoteca.model.Movie
 import com.fdez.videoteca.utils.inflate
 
-class MoviesAdapter : RecyclerView.Adapter<MoviewViewHolder>() {
+class MoviesAdapter (private val listener: (Movie) -> Unit): RecyclerView.Adapter<MoviewViewHolder>() {
 
     private val movieList = arrayListOf<Movie>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviewViewHolder {
@@ -23,6 +24,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviewViewHolder>() {
     override fun onBindViewHolder(holder: MoviewViewHolder, position: Int) {
         val movie: Movie = movieList[position]
         holder.bind(movie)
+        holder.itemView.setOnClickListener{listener(movie)}
     }
     fun refreshList(movieList: ArrayList<Movie>){
         this.movieList.addAll(movieList)

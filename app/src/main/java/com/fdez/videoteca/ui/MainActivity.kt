@@ -1,9 +1,8 @@
 package com.fdez.videoteca.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.fdez.videoteca.R
 import com.fdez.videoteca.adapter.MoviesAdapter
 import com.fdez.videoteca.databinding.ActivityMainBinding
 import com.fdez.videoteca.model.Movie
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         bind = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bind.root)
 
-        adapter = MoviesAdapter()
+        adapter = MoviesAdapter(::onMovieClick)
         bind.recyclerview.adapter = adapter
 
         adapter.refreshList(getListFromJson())
@@ -31,6 +30,13 @@ class MainActivity : AppCompatActivity() {
         val json: String? = getJsonFromAssets("movies.json")
         val movieList = Gson().fromJson(json, Array<Movie>::class.java).toList()
         return ArrayList(movieList)
+    }
+
+    private fun onMovieClick(movie: Movie){
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("movie", movie)
+        startActivity(intent)
+
     }
 
 
