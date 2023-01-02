@@ -8,6 +8,7 @@ android {
     namespace 'com.fdez.videoteca'
     compileSdk 32
 
+
     defaultConfig {
         applicationId "com.fdez.videoteca"
         minSdk 23
@@ -46,8 +47,7 @@ dependencies {
 
     implementation "com.google.code.gson:gson:2.9.0"
 
-    implementation('com.github.bumptech.glide:glide:4.13.0')
-    kapt('com.github.bumptech.glide:compiler:4.13.0')
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
 }

@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import com.bumptech.glide.Glide
-import com.fdez.videoteca.GlideApp
-import com.fdez.videoteca.R
 import java.io.InputStream
 import java.nio.charset.Charset
 
-fun Context.getJsonFromAssets(file: String): String? {
+fun Context.getJsonFromAssets(file: String): String {
     var json = ""
     val stream: InputStream = assets.open(file)
     val size: Int = stream.available()
@@ -26,7 +24,7 @@ fun Context.getJsonFromAssets(file: String): String? {
 
 //carga la imagen en formato string
 fun ImageView.loadImage(image: String) {
-    GlideApp.with(this).load(image).override(100,200).into(this)
+    Glide.with(this).load(image).into(this)
 }
 
 
