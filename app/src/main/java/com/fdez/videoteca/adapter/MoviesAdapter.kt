@@ -9,6 +9,8 @@ import com.fdez.videoteca.R
 import com.fdez.videoteca.databinding.ItemMovieBinding
 import com.fdez.videoteca.model.Movie
 import com.fdez.videoteca.utils.inflate
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MoviesAdapter (private val listener: (Movie) -> Unit): RecyclerView.Adapter<MoviewViewHolder>() {
 
@@ -29,5 +31,11 @@ class MoviesAdapter (private val listener: (Movie) -> Unit): RecyclerView.Adapte
     fun refreshList(movieList: ArrayList<Movie>){
         this.movieList.addAll(movieList)
         notifyDataSetChanged()//actualizamos el adaptador
+    }
+
+    fun filterByName(movies: List<Movie>){
+        movieList.clear()
+        movieList.addAll(movies)
+        notifyDataSetChanged()
     }
 }

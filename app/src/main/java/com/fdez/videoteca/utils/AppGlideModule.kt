@@ -1,4 +1,4 @@
-package com.fdez.videoteca
+package com.fdez.videoteca.utils
 
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule
