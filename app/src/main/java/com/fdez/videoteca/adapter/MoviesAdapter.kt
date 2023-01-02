@@ -33,9 +33,34 @@ class MoviesAdapter (private val listener: (Movie) -> Unit): RecyclerView.Adapte
         notifyDataSetChanged()//actualizamos el adaptador
     }
 
+    //filtrado de pelicula
     fun filterByName(movies: List<Movie>){
         movieList.clear()
         movieList.addAll(movies)
         notifyDataSetChanged()
     }
+
+    //ordenamos la lista por nombre
+    fun orderByName(){
+        val sortedList = movieList.sortedBy{ it.name }
+        movieList.clear()
+        movieList.addAll(sortedList)
+        notifyDataSetChanged()
+    }
+    fun insertObject(){
+        val item = Movie(13, "Prueba", "prueba", "", 1972)
+        movieList.add(0, item)
+        notifyItemInserted(0)
+    }
+    //modificamos
+    fun modifyObject(){
+        movieList[0].name = "Prueba"
+        notifyItemChanged(0)
+    }
+    //eliminamos la posicion 0
+    fun deleteObject(){
+        movieList.removeAt(0)
+        notifyItemRemoved(0)
+    }
+
 }

@@ -46,12 +46,21 @@ class MainActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         })
+
+        bind.btSort.setOnClickListener {
+            adapter.orderByName()
+
+        }
     }
 
     private fun getListFromJson(): ArrayList<Movie>{
+        var movieList = arrayListOf<Movie>()
         val json: String? = getJsonFromAssets("movies.json")
-        val movieList = Gson().fromJson(json, Array<Movie>::class.java).toList()
-        copyList.addAll(movieList)
+        json?.let {//nos aseguramos que no sea null
+            movieList =ArrayList(Gson().fromJson(json, Array<Movie>::class.java).toList())
+            copyList.addAll(movieList)
+        }
+
         return ArrayList(movieList)
     }
 
